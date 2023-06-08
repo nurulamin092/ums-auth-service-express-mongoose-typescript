@@ -1,13 +1,13 @@
-import express, { Application, Request, Response } from 'express'
-import cors from 'cors'
+import express, { Application } from 'express';
+import cors from 'cors';
+import { UserRouter } from './app/modules/user/user.route';
 
-const app: Application = express()
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const app: Application = express();
 
-app.get('/', async (req: Request, res: Response) => {
-  res.send('Working successfully')
-})
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-export default app
+app.use('/api/v1/user', UserRouter.router);
+
+export default app;
